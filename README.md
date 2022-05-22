@@ -1,6 +1,6 @@
 # Memory-Game
 Memory game
   made using
-   *HTML
-   *CSS
-   *Javascript
+   * HTML 
+   * CSS
+   * Javascript
