@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Memory Game</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main>
+      <header>
+        <div class="name">Hello: <span></span></div>
+        <div class="tries">Wrong tries: <span>0</span></div>
+      </header>
+      <section class="blocks-container disable">
+        <div class="game-block" data-lang="c">
+          <div class="front face"></div>
+          <div class="back face">
+            <img src="images/icons8-c-sharp-logo-50.png" alt="" />
+          </div>
+        </div>
+        <div class="game-block" data-lang="c">
+          <div class="front face"></div>
+          <div class="back face">
+            <img src="images/icons8-c-sharp-logo-50.png" alt="" />
+          </div>
+        </div>
+        <div class="game-block" data-lang="css">
+          <div class="front face"></div>
+          <div class="back face">
+            <img src="images/icons8-css3-48.png" alt="" />
+          </div>
+        </div>
+        <div class="game-block" data-lang="css">
+          <div class="front face"></div>
+          <div class="back face">
+            <img src="images/icons8-css3-48.png" alt="" />
+          </div>
+        </div>
+        <div class="game-block" data-lang="html">
+          <div class="front face"></div>
+          <div class="back face">
+            <img src="images/icons8-html-64.png" alt="" />
+          </div>
+        </div>
+        <div class="game-block" data-lang="html">
+          <div class="front face"></div>
+          <div class="back face">
+            <img src="images/icons8-html-64.png" alt="" />
+          </div>
+        </div>
+        <div class="game-block" data-lang="https">
+          <div class="front face"></div>
+          <div class="back face">
+            <img src="images/icons8-https-60.png" alt="" />
+          </div>
+        </div>
+        <div class="game-block" data-lang="https">
+          <div class="front face"></div>
+          <div class="back face">
+            <img src="images/icons8-https-60.png" alt="" />
+          </div>
+        </div>
+        <div class="game-block" data-lang="java">
+          <div class="front face"></div>
+          <div class="back face">
+            <img src="images/icons8-java-64.png" alt="" />
+          </div>
+        </div>
+        <div class="game-block" data-lang="java">
+          <div class="front face"></div>
+          <div class="back face">
+            <img src="images/icons8-java-64.png" alt="" />
+          </div>
+        </div>
+        <div class="game-block" data-lang="javascript">
+          <div class="front face"></div>
+          <div class="back face">
+            <img src="images/icons8-javascript-48.png" alt="" />
+          </div>
+        </div>
+        <div class="game-block" data-lang="javascript">
+          <div class="front face"></div>
+          <div class="back face">
+            <img src="images/icons8-javascript-48.png" alt="" />
+          </div>
+        </div>
+        <div class="game-block" data-lang="php">
+          <div class="front face"></div>
+          <div class="back face">
+            <img src="images/icons8-php-64.png" alt="" />
+          </div>
+        </div>
+        <div class="game-block" data-lang="php">
+          <div class="front face"></div>
+          <div class="back face">
+            <img src="images/icons8-php-64.png" alt="" />
+          </div>
+        </div>
+        <div class="game-block" data-lang="python">
+          <div class="front face"></div>
+          <div class="back face">
+            <img src="images/icons8-python-48.png" alt="" />
+          </div>
+        </div>
+        <div class="game-block" data-lang="python">
+          <div class="front face"></div>
+          <div class="back face">
+            <img src="images/icons8-python-48.png" alt="" />
+          </div>
+        </div>
+        <div class="game-block" data-lang="react">
+          <div class="front face"></div>
+          <div class="back face">
+            <img src="images/icons8-react-40.png" alt="" />
+          </div>
+        </div>
+        <div class="game-block" data-lang="react">
+          <div class="front face"></div>
+          <div class="back face">
+            <img src="images/icons8-react-40.png" alt="" />
+          </div>
+        </div>
+        <div class="game-block" data-lang="sql">
+          <div class="front face"></div>
+          <div class="back face">
+            <img src="images/icons8-sql-64.png" alt="" />
+          </div>
+        </div>
+        <div class="game-block" data-lang="sql">
+          <div class="front face"></div>
+          <div class="back face">
+            <img src="images/icons8-sql-64.png" alt="" />
+          </div>
+        </div>
+      </section>
+      <audio
+        class="lose-sound"
+        src="sound/game-lose.wav"
+        preload="auto"
+      ></audio>
+      <audio
+        class="success-sound"
+        src="sound/game-success.wav"
+        preload="auto"
+      ></audio>
+    </main>
+    <div class="display-container">
+      <div class="display-title">What's Your Name?</div>
+      <input class="display-input" type="text" />
+      <div class="display-btn">Submit</div>
+    </div>
+    <script src="main.js"></script>
+  </body>
+</html>
