@@ -1,3 +1,4 @@
+let header = document.querySelector("header");
 let headerName = document.querySelector(".name span");
 let tries = document.querySelector(".tries span");
 let blocksContainer = document.querySelector(".blocks-container");
@@ -6,10 +7,16 @@ let displayContainer = document.querySelector(".display-container");
 let displayTitle = document.querySelector(".display-title");
 let displayBtn = document.querySelector(".display-btn");
 let displayInput = document.querySelector(".display-input");
+let displayDesc = document.querySelector(".display-description");
 let successSound = document.querySelector(".success-sound");
 let loseSound = document.querySelector(".lose-sound");
+let timer = document.querySelector(".timer span");
+let peekParent = document.querySelector(".peek");
 let wrongCounter = 0;
 let correctCounter = 0;
+let gameCounter = 120;
+let CorrectInARow = 0;
+let NumberToObtainPeek = 2;
 let playerName;
 // create number array from 1 to length of arrayblocks
 let randomNumArray = Array.from(Array(arrayBlocks.length).keys()).map(
@@ -24,6 +31,7 @@ displayBtn.addEventListener("click", () => {
     displayContainer.classList.add("no-display");
     blocksContainer.classList.remove("disable");
     headerName.textContent = playerName;
+    timeCounter();
   }
 });
 
@@ -79,12 +87,18 @@ function checkIfMatch() {
     secondBlock.getAttribute("data-lang")
   ) {
     successSound.play();
+    alertColor("success");
     firstBlock.classList.add("disable");
     secondBlock.classList.add("disable");
+    firstBlock.lastElementChild.classList.add("finished");
+    secondBlock.lastElementChild.classList.add("finished");
     numberOfBlocksFlipped = 0;
-    checkIfWin();
+    CorrectInARow++;
+    CheckAddPeek();
+    checkGameOver();
   } else {
     loseSound.play();
+    alertColor("failure");
     firstBlock.classList.remove("disable");
     blocksContainer.classList.add("disable");
     tries.textContent = wrongCounter += 1;
@@ -94,17 +108,80 @@ function checkIfMatch() {
       blocksContainer.classList.remove("disable");
     }, 1000);
     numberOfBlocksFlipped = 0;
+    CorrectInARow = 0;
   }
 }
 
-// check if win game and display game won!
-function checkIfWin() {
+// check if game is finished by finishing all blocks || timer has finished
+function checkGameOver() {
   correctCounter++;
-  if (correctCounter == arrayBlocks.length / 2) {
-    displayTitle.textContent = `Congrats, number of wrong tires: ${wrongCounter}`;
+  if (correctCounter == arrayBlocks.length / 2 || gameCounter <= 0) {
+    clearTimeout(countInterval);
+    displayTitle.remove();
     displayInput.remove();
+    displayDesc.classList.add("final");
+    displayDesc.firstElementChild.innerHTML = `Wrong tires: <span> ${wrongCounter} </span>`;
+    displayDesc.lastElementChild.innerHTML = `Time left: <span>${
+      gameCounter + 1
+    }</span> s`;
+    blocksContainer.classList.add("disable");
     displayBtn.classList.add("retry");
     displayBtn.textContent = "Retry";
     displayContainer.classList.remove("no-display");
   }
+}
+
+// timer countdown function
+let countInterval;
+function timeCounter() {
+  gameCounter--;
+  countInterval = setInterval(() => {
+    if (gameCounter >= 0) {
+      timer.textContent = gameCounter--;
+    } else {
+      checkGameOver();
+    }
+  }, 1000);
+}
+
+// Check if 3 answers are correct in a row => add peek
+function CheckAddPeek() {
+  if (CorrectInARow == NumberToObtainPeek) {
+    let peek = document.createElement("span");
+    peek.classList.add("peek-btn");
+    peek.textContent = "?";
+    peekParent.appendChild(peek);
+    CorrectInARow = 0;
+  }
+}
+peekParent.addEventListener("click", (e) => {
+  if (e.target.classList.contains("peek-btn")) {
+    e.target.remove();
+    arrayBlocks.forEach((block) => {
+      if (!block.classList.contains("is-flipped")) {
+        block.classList.add("is-flipped");
+        blocksContainer.classList.add("disable");
+        setTimeout(() => {
+          block.classList.remove("is-flipped");
+          blocksContainer.classList.remove("disable");
+        }, 1000);
+      }
+    });
+  }
+});
+
+// function for success & failure border color change
+function alertColor(action) {
+  // document.body.style.backgroundColor = "red";
+  header.classList.add(action);
+  arrayBlocks.forEach((block) => {
+    block.classList.add(action);
+  });
+  setTimeout(() => {
+    header.classList.remove(action);
+    arrayBlocks.forEach((block) => {
+      block.classList.remove(action);
+    });
+    // document.body.style.backgroundColor = "#FFF";
+  }, 1000);
 }
