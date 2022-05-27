@@ -18,7 +18,7 @@ let timer = document.querySelector(".timer span");
 let peekParent = document.querySelector(".peek");
 let wrongCounter = 0;
 let correctCounter = 0;
-let gameCounter = 5;
+let gameCounter = 120;
 let CorrectInARow = 0;
 let NumberToObtainPeek = 2;
 let playerName;
