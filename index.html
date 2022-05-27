@@ -163,11 +163,39 @@
     <div class="display-container">
       <div class="display-title">Memory Game</div>
       <div class="display-description">
-        <p>Two correct in a row = one peak</p>
-        <div class="dispay-time">Time: 120s</div>
+        <div class="example-container">
+          <p>Match 2 blocks with each other</p>
+          <div class="game-block example" data-lang="python">
+            <div class="front face"></div>
+            <div class="back face">
+              <img src="images/icons8-python-48.png" draggable="false" alt="" />
+            </div>
+          </div>
+          <div class="game-block example" data-lang="python">
+            <div class="front face"></div>
+            <div class="back face">
+              <img src="images/icons8-python-48.png" draggable="false" alt="" />
+            </div>
+          </div>
+        </div>
+        <div class="example-container peek-example">
+          <p>Two guesses correct in a row = one peek</p>
+          <div class="peek-example">
+            <span class="peek-btn">?</span>
+          </div>
+        </div>
+        <div class="display-time">Time: <span>120</span>s</div>
       </div>
-      <input class="display-input" type="text" placeholder="Your Name" />
-      <div class="display-btn">Start!</div>
+      <div class="input-container">
+        <label for="name">Name</label>
+        <input
+          id="name"
+          class="display-input"
+          type="text"
+          placeholder="ex: Abdallah"
+        />
+        <button class="display-btn">Start!</button>
+      </div>
     </div>
     <script src="main.js"></script>
   </body>

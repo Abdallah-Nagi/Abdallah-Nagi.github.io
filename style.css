@@ -107,29 +107,51 @@ header.failure {
   pointer-events: none;
 }
 .display-container {
-  width: 50%;
-  height: 50%;
+  width: 100%;
+  height: 100%;
   margin: auto;
-  background-color: #afafaff5;
+  background-color: #d5d5d5fc;
   color: rgb(5 0 88);
-  border-radius: 25px;
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: 0;
+  left: 0;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
   text-align: center;
 }
-.display-container > *:not(:last-child) {
-  margin-bottom: 10px;
-}
+
 .display-title {
-  font-size: 1.5rem;
-  color: #e44f4f;
+  color: rgb(45, 42, 64);
+  font-size: 2rem;
+  margin: 50px;
   font-weight: bold;
+}
+.display-description {
+  text-align: left;
+  margin: 10px;
+}
+
+.example-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.game-block.example {
+  width: 50px;
+  height: 50px;
+  margin: 2px;
+  font-style: normal;
+  pointer-events: none;
+  transform: rotateY(180deg);
+}
+
+.peek-example .peek-btn {
+  color: #fff;
+}
+
+.display-container label {
+  margin-right: 10px;
 }
 .display-input {
   height: 15px;
@@ -143,10 +165,12 @@ header.failure {
 .display-input:focus {
   outline: 2px solid #ffb96d;
 }
-.display-description {
-  font-size: 0.9rem;
-  font-style: italic;
+
+.display-time {
+  text-align: center;
+  margin-bottom: 20px;
 }
+
 .display-description.final {
   font-size: 1.5rem;
   font-style: normal;
@@ -180,4 +204,8 @@ header.failure {
     grid-template-rows: repeat(5, 1fr);
     gap: 15px 15px;
   }
+  /* .display-container {
+    width: 50%;
+    height: 50%;
+  } */
 }
