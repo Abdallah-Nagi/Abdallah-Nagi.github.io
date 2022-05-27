@@ -5,7 +5,11 @@ let blocksContainer = document.querySelector(".blocks-container");
 let arrayBlocks = Array.from(blocksContainer.children);
 let displayContainer = document.querySelector(".display-container");
 let displayTitle = document.querySelector(".display-title");
+let displayExample = Array.from(
+  document.querySelectorAll(".example-container")
+);
 let displayBtn = document.querySelector(".display-btn");
+let inputContainer = document.querySelector(".input-container");
 let displayInput = document.querySelector(".display-input");
 let displayDesc = document.querySelector(".display-description");
 let successSound = document.querySelector(".success-sound");
@@ -14,7 +18,7 @@ let timer = document.querySelector(".timer span");
 let peekParent = document.querySelector(".peek");
 let wrongCounter = 0;
 let correctCounter = 0;
-let gameCounter = 120;
+let gameCounter = 5;
 let CorrectInARow = 0;
 let NumberToObtainPeek = 2;
 let playerName;
@@ -22,7 +26,6 @@ let playerName;
 let randomNumArray = Array.from(Array(arrayBlocks.length).keys()).map(
   (x) => x + 1
 );
-
 let pattern = /^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$/;
 
 displayBtn.addEventListener("click", () => {
@@ -31,6 +34,7 @@ displayBtn.addEventListener("click", () => {
     displayContainer.classList.add("no-display");
     blocksContainer.classList.remove("disable");
     headerName.textContent = playerName;
+    showAllBlocks();
     timeCounter();
   }
 });
@@ -116,18 +120,23 @@ function checkIfMatch() {
 function checkGameOver() {
   correctCounter++;
   if (correctCounter == arrayBlocks.length / 2 || gameCounter <= 0) {
-    clearTimeout(countInterval);
-    displayTitle.remove();
-    displayInput.remove();
-    displayDesc.classList.add("final");
-    displayDesc.firstElementChild.innerHTML = `Wrong tires: <span> ${wrongCounter} </span>`;
-    displayDesc.lastElementChild.innerHTML = `Time left: <span>${
-      gameCounter + 1
-    }</span> s`;
-    blocksContainer.classList.add("disable");
-    displayBtn.classList.add("retry");
-    displayBtn.textContent = "Retry";
-    displayContainer.classList.remove("no-display");
+    editDisplay();
+    let finishMsg = document.createElement("div");
+    finishMsg.classList.add("finish-msg");
+    displayDesc.prepend(finishMsg);
+    if (correctCounter == arrayBlocks.length / 2) {
+      finishMsg.classList.add("success");
+      if (wrongCounter == 0) {
+        finishMsg.textContent = "Easy Game!";
+      } else if (wrongCounter < 5) {
+        finishMsg.textContent = "Well Done!";
+      } else {
+        finishMsg.textContent = "You Can Do Better!";
+      }
+    } else {
+      finishMsg.classList.add("fail");
+      finishMsg.textContent = "Out of Time, Try Again?";
+    }
   }
 }
 
@@ -184,4 +193,37 @@ function alertColor(action) {
     });
     // document.body.style.backgroundColor = "#FFF";
   }, 1000);
+}
+
+// show all blocks at start
+function showAllBlocks() {
+  arrayBlocks.forEach((block) => {
+    block.classList.add("is-flipped");
+    blocksContainer.classList.add("disable");
+    setTimeout(() => {
+      block.classList.remove("is-flipped");
+      blocksContainer.classList.remove("disable");
+    }, 1000);
+  });
+}
+
+function editDisplay() {
+  clearTimeout(countInterval);
+  displayExample.forEach((item) => {
+    item.remove();
+  });
+  displayInput.previousElementSibling.remove();
+  displayInput.remove();
+  displayDesc.classList.add("final");
+  Array.from(displayDesc.children).forEach((child) => {
+    child.remove();
+  });
+  displayDesc.innerHTML = `Wrong tires: <span> ${wrongCounter} </span> <br> Time left: <span>${
+    gameCounter + 1
+  }</span>s`;
+  blocksContainer.classList.add("disable");
+  displayBtn.classList.add("retry");
+  displayBtn.textContent = "Retry";
+
+  displayContainer.classList.remove("no-display");
 }
