@@ -19,7 +19,7 @@ window.addEventListener("load", () => {
 window.addEventListener("resize", () => {
   console.log(window.innerHeight);
   let height = window.innerHeight * 0.7;
-  let width = window.innerWidth * 0.8;
+  let width = window.innerWidth * 0.6;
   if (height > width) {
     r = 5;
     c = 4;
