@@ -95,6 +95,10 @@ function checkIfMatch() {
   ) {
     successSound.play();
     alertColor("success");
+    blocksContainer.classList.add("disable");
+    setTimeout(() => {
+      blocksContainer.classList.remove("disable");
+    }, 200);
     firstBlock.classList.add("disable");
     secondBlock.classList.add("disable");
     firstBlock.lastElementChild.classList.add("finished");

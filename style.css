@@ -115,7 +115,7 @@ header.failure {
   margin: auto;
   background-color: #d5d5d5fc;
   color: rgb(5 0 88);
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   display: flex;
